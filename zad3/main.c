@@ -24,6 +24,7 @@ void execute(char *papiez) {
         printf("trololoo");
         exit(1);
     }
+    pclose(cmd);
 }
 
 char *get_output(int argc, char **argv) {
