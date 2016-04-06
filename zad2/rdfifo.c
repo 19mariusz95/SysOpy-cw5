@@ -3,6 +3,8 @@
 #include <sys/stat.h>
 #include <zconf.h>
 #include <fcntl.h>
+#include <sys/time.h>
+#include <time.h>
 
 char *get_name(int argc, char **argv);
 
@@ -10,7 +12,8 @@ int main(int argc, char *argv[]) {
 
     char *name = get_name(argc, argv);
 
-    char ala[1024];
+    char ala[512];
+    char ala2[1024];
 
     mkfifo(name, S_IRWXU);
     int rfd = open(name, O_RDONLY);
@@ -18,7 +21,9 @@ int main(int argc, char *argv[]) {
     while (1) {
         int tmp = read(rfd, ala, sizeof(ala));
         if (tmp > 0) {
-            printf("%s", ala);
+            size_t t = time(NULL);
+            sprintf(ala2, "%li - %s", t, ala);
+            printf("%s", ala2);
         }
     }
 
