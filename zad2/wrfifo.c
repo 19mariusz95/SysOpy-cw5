@@ -5,15 +5,30 @@
 #include <zconf.h>
 #include <sys/time.h>
 #include <time.h>
+#include <signal.h>
+
+int wfd;
 
 char *get_name(int argc, char **argv);
+
+void handler(int sig) {
+    close(wfd);
+    exit(0);
+}
 
 
 int main(int argc, char *argv[]){
 
     char *name = get_name(argc, argv);
 
-    int wfd = open(name, O_WRONLY);
+    wfd = open(name, O_WRONLY);
+
+    if (wfd == -1) {
+        printf("error while opening fifo");
+        exit(1);
+    }
+
+    signal(SIGINT, handler);
 
     while (1) {
         char tmp[128];
