@@ -51,12 +51,12 @@ int main(int argc, char *argv[]) {
 
 int get_N_arg(int argc, char *argv[]) {
     if (argc < 2) {
-        printf("trolo");
+        printf("No arguments");
         exit(1);
     }
     int result = atoi(argv[1]);
     if (result == 0) {
-        printf("troloolo");
+        printf("Bad argument");
         exit(1);
     }
     return result;

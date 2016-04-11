@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 void execute(char *papiez) {
     FILE *cmd = popen(papiez, "r");
     if (cmd == NULL) {
-        printf("trololoo");
+        printf("Error while popen");
         exit(1);
     }
     pclose(cmd);
@@ -29,7 +29,7 @@ void execute(char *papiez) {
 
 char *get_output(int argc, char **argv) {
     if (argc < 2) {
-        printf("trololo");
+        printf("No arguments");
         exit(1);
     }
     return argv[1];

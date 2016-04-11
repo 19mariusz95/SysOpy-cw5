@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 
 char *get_name(int argc, char **argv) {
     if (argc < 2) {
-        printf("trololo");
+        printf("You have to specify name of pipe as argument");
         exit(1);
     }
     return argv[1];
