@@ -4,14 +4,7 @@
 #include <bits/signum.h>
 #include <signal.h>
 
-int get_N_arg(int argc, char *argv[]);
-
 int main(int argc, char *argv[]) {
-
-    int N = get_N_arg(argc, argv);
-    char alina[100];
-    sprintf(alina, "fold -w %d", N);
-
 
     int okno[2];
 
@@ -45,19 +38,7 @@ int main(int argc, char *argv[]) {
                 exit(3);
             }
         }
-        execl("/bin/fold", alina, NULL);
+        execlp("fold", "fold", "-w", argv[1], NULL);
     }
 }
 
-int get_N_arg(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("No arguments");
-        exit(1);
-    }
-    int result = atoi(argv[1]);
-    if (result == 0) {
-        printf("Bad argument");
-        exit(1);
-    }
-    return result;
-}
